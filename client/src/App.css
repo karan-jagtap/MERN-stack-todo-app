@@ -1,0 +1,114 @@
+* {
+  display: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  background-color: #20232A;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.container .row h1 {
+  color: antiquewhite;
+  padding: 15px 10px 10px;
+}
+
+.container .row.heading {
+  border-bottom: 1px #ffffff solid;
+}
+
+.row.content{
+  justify-content: center;
+}
+
+.card {
+  background-color: #DCEED1;
+}
+
+.card .card-heading {
+  color: #20232A;
+}
+
+.card .card-body input[type=text] {
+  background: transparent;
+}
+
+.btn-primary {
+  background-color: #20232A;
+  color: antiquewhite;
+  border: none;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
+  background-color: #09010C;
+  color: antiquewhite;
+  border: none;
+}
+
+form {
+  width: 100%;
+}
+
+small.error-message {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.todo-list {
+  margin-bottom: 10px;
+}
+
+.todo-item {
+  width: 100%;
+  height: 100%;
+  margin-top:10px;
+  align-self: center;
+  align-items: center;
+}
+
+
+.todo-checkbox {
+  margin:5px;
+  align-self: center;
+}
+
+.todo-delete-icon {
+  float: right;
+  padding: 0 5px;
+  border: none;
+  background-color: transparent;
+}
+
+.testmonial-client{
+  width: 100%;
+}
+
+.testmonial-container{
+  width: 100%;
+    margin-top: 25px;
+    display:flex;
+    border: 1px dashed yellow;
+    flex-direction: row;
+}
+
+.text-content {
+  color: white;
+}
+
+.feedback-client {
+  color: white;
+}
