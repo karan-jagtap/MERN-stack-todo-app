@@ -9,5 +9,4 @@ This is a full stack Todo Project for concept understanding.
   module.exports = {
     mongoURI: '<your_mongo_uri>'
   }
- 
-  ```
+```
