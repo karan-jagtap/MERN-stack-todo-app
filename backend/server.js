@@ -28,7 +28,7 @@ mongoose
         })
     //this is when connection is established successfully, async
     .then(() => {
-        console.log('Connection successful... ');
+        console.log('Connection to MongoDB successful... ');
     })
     //error async function
     .catch(err => console.log(`Error connecting mongoDB --> ${err}`));

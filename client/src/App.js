@@ -4,6 +4,7 @@ import './App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import Header from './components/Header';
+import { Col, Row, Card, CardHeader, CardBody } from 'reactstrap';
 
 class App extends React.Component {
 
@@ -61,30 +62,30 @@ class App extends React.Component {
         <div className="container" >
           <Route exact path="/" render={props => (
             <React.Fragment>
-              <div className="row content">
-                <div className="col-md-6 mt-4">
-                  <div className="card">
-                    <div className="card-header">
+              <Row className="mt-4">
+                <Col md="6">
+                  <Card>
+                    <CardHeader>
                       <h3><i className="fas fa-plus-square mr-3"></i>Add Item</h3>
-                    </div>
-                    <div className="card-body">
+                    </CardHeader>
+                    <CardBody>
                       <TodoForm addTodo={this.addTodo} />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 mt-4">
-                  <div className="card">
-                    <div className="card-header">
+                    </CardBody>
+                  </Card>
+                </Col>
+                <Col md="6">
+                  <Card>
+                    <CardHeader>
                       <h3><i className="fas fa-list-alt mr-3"></i>Todos...</h3>
-                    </div>
-                    <div className="card-body">
+                    </CardHeader>
+                    <CardBody>
                       <div className="todo-list">
                         {element}
                       </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </CardBody>
+                  </Card>
+                </Col>
+              </Row>
             </React.Fragment>
           )} />
         </div>
