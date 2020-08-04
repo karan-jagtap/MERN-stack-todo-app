@@ -13,6 +13,9 @@ class App extends React.Component {
     todos: []
   };
 
+  /**
+   * AddToDo --> State level
+   */
   addTodo = (name) => {
     this.setState({
       todos: [...this.state.todos, {
@@ -24,6 +27,9 @@ class App extends React.Component {
     console.log("id = " + this.id);
   }
 
+  /**
+   * MarkDone --> State level
+   */
   markDone = (name) => {
     this.setState({
       todos: this.state.todos.map(todo => {
@@ -35,15 +41,30 @@ class App extends React.Component {
     });
   }
 
+  /**
+   * DelTodo --> State level
+   */
   delTodo = (name) => {
     this.setState({
       todos: [...this.state.todos.filter(todo => todo.name !== name)]
     });
   }
 
+
   /**
-   * Tempory
+   * EditTodo --> State level
    */
+  editTodo = (name) => {
+    const newName = prompt('Enter Todo', name);
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.name === name) {
+          todo.name = newName;
+        }
+        return todo;
+      })
+    })
+  }
 
   render() {
     let element = '';
@@ -51,7 +72,8 @@ class App extends React.Component {
       element = <TodoList
         todos={this.state.todos}
         markDone={this.markDone}
-        delTodo={this.delTodo} />;
+        delTodo={this.delTodo}
+        editTodo={this.editTodo} />;
       console.log("size = " + this.state.todos.length);
     } else {
       element = <small>Todo List empty</small>;
