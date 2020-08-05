@@ -5,79 +5,105 @@ import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import Header from './components/Header';
 import { Col, Row, Card, CardHeader, CardBody } from 'reactstrap';
+//this function gets state from redux to react components
+import { connect } from 'react-redux';
+import { getTodos, deleteTodo, editTodo, markDone, addTodo } from './actions/todoActions';
+import PropTypes from 'prop-types';
 
 class App extends React.Component {
 
-  id = 0;
-  state = {
-    todos: []
-  };
+  componentDidMount() {
+    this.props.getTodos();
+  }
 
   /**
-   * AddToDo --> State level
+   * Instead of using all these different functions for CRUD operations separately,
+   * it can be done in JSX itself. But for better understanding of different use cases
+   * it is done in separate functions.
+   */
+
+  /**
+   * AddToDo
    */
   addTodo = (name) => {
-    this.setState({
+    //using redux
+    this.props.addTodo(name);
+
+    //using component state
+    /*this.setState({
       todos: [...this.state.todos, {
         id: (++this.id),
         name: name,
         done: false
       }]
     }, () => console.log(this.state.todos));
-    console.log("id = " + this.id);
+    console.log("id = " + this.id);*/
   }
 
   /**
-   * MarkDone --> State level
+   * MarkDone
    */
-  markDone = (name) => {
-    this.setState({
+  markDone = id => {
+    //using redux
+    this.props.markDone(id);
+
+    //using component state
+    /*this.setState({
       todos: this.state.todos.map(todo => {
         if (todo.name === name) {
           todo.done = !todo.done;
         }
         return todo;
       })
-    });
+    });*/
   }
 
   /**
-   * DelTodo --> State level
+   * DelTodo
    */
-  delTodo = (name) => {
-    this.setState({
+  delTodo = id => {
+    //using component state
+    /*this.setState({
       todos: [...this.state.todos.filter(todo => todo.name !== name)]
-    });
+    });*/
+
+    //using redux
+    this.props.deleteTodo(id);
   }
 
-
   /**
-   * EditTodo --> State level
+   * EditTodo
    */
-  editTodo = (name) => {
-    const newName = prompt('Enter Todo', name);
-    this.setState({
+  editTodo = (id, name) => {
+    const newName = prompt('Edit Todo', name);
+    //using redux
+    this.props.editTodo(id, newName);
+
+    //using component state
+    /*this.setState({
       todos: this.state.todos.map(todo => {
         if (todo.name === name) {
           todo.name = newName;
         }
         return todo;
       })
-    })
+    })*/
   }
 
   render() {
+    const { todos } = this.props.todo;
     let element = '';
-    if (this.state.todos.length !== 0) {
+    if (todos.length !== 0) {
       element = <TodoList
-        todos={this.state.todos}
+        todos={todos}
         markDone={this.markDone}
         delTodo={this.delTodo}
         editTodo={this.editTodo} />;
-      console.log("size = " + this.state.todos.length);
+      console.log("size = " + todos.length);
     } else {
       element = <small>Todo List empty</small>;
     }
+
     return (
       <Router>
         <Header />
@@ -116,4 +142,17 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  todo: state.todo
+})
+
+//whenever you bring action from redux it will be used as prop in react
+App.protoType = {
+  getTodos: PropTypes.func.isRequired,
+  todo: PropTypes.object.isRequired,
+  markDone: PropTypes.func.isRequired
+}
+
+//export default App;
+// export using connect function for react-redux
+export default connect(mapStateToProps, { getTodos, deleteTodo, editTodo, markDone, addTodo })(App)
