@@ -8,7 +8,7 @@ const TodoSchema = new Schema({
         type: String,
         required: true
     },
-    markDone: {
+    done: {
         type: Boolean,
         default: false
     },

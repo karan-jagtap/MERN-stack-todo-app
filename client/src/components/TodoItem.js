@@ -8,20 +8,20 @@ class TodoItem extends React.Component {
         {/* CheckBox */}
         <input className="todo-checkbox" type="checkbox"
           defaultChecked={this.props.todo.done}
-          onChange={this.props.markDone.bind(this, this.props.todo.id)} />&nbsp;
+          onChange={this.props.markDone.bind(this, this.props.todo._id, !this.props.todo.done)} />&nbsp;
         {/* Todo Name */}
         <span style={this.props.todo.done ? { textDecoration: 'line-through' } : {}}>
           {this.props.todo.name}
         </span>
-        {/* Edit Button */}
-        <button className="todo-delete-icon"
-          onClick={this.props.editTodo.bind(this, this.props.todo.id, this.props.todo.name)}>
-          <i className="m-auto fas fa-pen mr-3 text-danger"></i>
-        </button>
         {/* Delete Button */}
         <button className="todo-delete-icon"
-          onClick={this.props.delTodo.bind(this, this.props.todo.id)}>
+          onClick={this.props.delTodo.bind(this, this.props.todo._id)}>
           <i className="m-auto fas fa-trash-alt mr-3 text-danger"></i>
+        </button>
+        {/* Edit Button */}
+        <button className="todo-delete-icon"
+          onClick={this.props.editTodo.bind(this, this.props.todo._id, this.props.todo.name)}>
+          <i className="m-auto fas fa-pen mr-3 text-danger"></i>
         </button>
       </div>
     );

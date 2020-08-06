@@ -43,9 +43,9 @@ class App extends React.Component {
   /**
    * MarkDone
    */
-  markDone = id => {
+  markDone = (id, done) => {
     //using redux
-    this.props.markDone(id);
+    this.props.markDone(id, done);
 
     //using component state
     /*this.setState({
@@ -99,7 +99,6 @@ class App extends React.Component {
         markDone={this.markDone}
         delTodo={this.delTodo}
         editTodo={this.editTodo} />;
-      console.log("size = " + todos.length);
     } else {
       element = <small>Todo List empty</small>;
     }

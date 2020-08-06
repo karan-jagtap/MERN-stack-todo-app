@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const newTodo = new TodoModel({
         name: req.body.name,
-        markDone: req.body.markDone
+        markDone: false
     });
     newTodo
         .save()
@@ -49,7 +49,7 @@ router.post('/update/:id', (req, res) => {
     let newTodo = new TodoModel();
     newTodo._id = req.params.id;
     newTodo.name = req.body.name;
-    newTodo.markDone = req.body.markDone;
+    newTodo.done = req.body.done;
     newTodo.date = Date.now();
     TodoModel
         .findByIdAndUpdate(
@@ -58,6 +58,7 @@ router.post('/update/:id', (req, res) => {
             { new: true })
         .then(TodoItem => {
             res.json(TodoItem);
+            console.log(`Sending edited todo data\n${TodoItem}`);
         })
         .catch(err => {
             res.status(404).json({
