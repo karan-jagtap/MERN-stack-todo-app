@@ -4,11 +4,12 @@ import './App.css';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 import Header from './components/Header';
-import { Col, Row, Card, CardHeader, CardBody } from 'reactstrap';
+import { Col, Row, Card, CardHeader, CardBody, Spinner } from 'reactstrap';
 //this function gets state from redux to react components
 import { connect } from 'react-redux';
 import { getTodos, deleteTodo, editTodo, markDone, addTodo } from './actions/todoActions';
 import PropTypes from 'prop-types';
+import Account from './components/Account';
 
 class App extends React.Component {
 
@@ -91,18 +92,21 @@ class App extends React.Component {
   }
 
   render() {
-    const { todos } = this.props.todo;
+    const { todos, loading } = this.props.todo;
     let element = '';
     if (todos.length !== 0) {
-      element = <TodoList
-        todos={todos}
-        markDone={this.markDone}
-        delTodo={this.delTodo}
-        editTodo={this.editTodo} />;
+      element = loading
+        ? <div className="center-spinner"><Spinner color="dark" /></div>
+        : <TodoList
+          todos={todos}
+          markDone={this.markDone}
+          delTodo={this.delTodo}
+          editTodo={this.editTodo} />;
     } else {
-      element = <small>Todo List empty</small>;
+      element = loading
+        ? <div className="center-spinner"><Spinner color="dark" /></div>
+        : <small>Todo List empty</small>;
     }
-
     return (
       <Router>
         <Header />
@@ -120,7 +124,7 @@ class App extends React.Component {
                     </CardBody>
                   </Card>
                 </Col>
-                <Col md="6">
+                <Col md="6" className="mt-4 mt-md-0">
                   <Card>
                     <CardHeader>
                       <h3><i className="fas fa-list-alt mr-3"></i>Todos...</h3>
@@ -135,6 +139,9 @@ class App extends React.Component {
               </Row>
             </React.Fragment>
           )} />
+          <Route path="/account" render={props => (
+            <Account />
+          )} />
         </div>
       </Router>
     );
@@ -142,14 +149,16 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  todo: state.todo
+  todo: state.todo,
+  loading: state.loading
 })
 
 //whenever you bring action from redux it will be used as prop in react
 App.protoType = {
   getTodos: PropTypes.func.isRequired,
   todo: PropTypes.object.isRequired,
-  markDone: PropTypes.func.isRequired
+  markDone: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 //export default App;

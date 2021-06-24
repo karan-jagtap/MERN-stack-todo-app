@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import { Form, Input, FormGroup } from 'reactstrap';
+import { Form, Input } from 'reactstrap';
 
 class TodoForm extends React.Component {
 

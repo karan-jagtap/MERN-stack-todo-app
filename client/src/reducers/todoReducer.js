@@ -1,11 +1,10 @@
 //these are the actions related to Todos
 import { GET_TODOS, ADD_TODO, DELETE_TODO, EDIT_TODO, MARK_DONE, TODOS_LOADING } from '../actions/todoTypes';
-import { v1 as uuid } from 'uuid';
 
 //this initialState object will now act as global state for Todo related actions
 const initialState = {
   todos: [],
-  loading: false
+  loading: true
 }
 
 export default function (state = initialState, action) {

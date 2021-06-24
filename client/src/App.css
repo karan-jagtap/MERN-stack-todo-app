@@ -111,3 +111,8 @@ small.error-message {
 .feedback-client {
   color: white;
 }
+
+.center-spinner {
+  display: flex;
+  justify-content: center;
+}

@@ -7,12 +7,7 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+  NavLink
 } from 'reactstrap';
 
 class Header extends React.Component {
@@ -40,16 +35,13 @@ class Header extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto my-auto" navbar>
               <NavItem className="mr-2" color="light">
-                <NavLink href="#"><i className="fas fa-list-alt mr-1"></i>Todos</NavLink>
+                <NavLink href="/">Home</NavLink>
+              </NavItem>
+              <NavItem className="mr-2" color="light">
+                <NavLink href="/account">Account</NavLink>
               </NavItem>
               <NavItem className="mr-2">
-                <NavLink href="#"><i className="fas fa-plus-square mr-1"></i>Add</NavLink>
-              </NavItem>
-              <NavItem className="mr-2">
-                <NavLink href="#"><i className="fas fa-pen mr-1"></i>Update</NavLink>
-              </NavItem>
-              <NavItem className="mr-2">
-                <NavLink href="#"><i className="fas fa-trash-alt mr-1"></i>Delete</NavLink>
+                <NavLink target="_blank" href="https://github.com/kmessilj/MERN-stack-todo-app"><i className="fab fa-github mr-1"></i>Github</NavLink>
               </NavItem>
             </Nav>
           </Collapse>
