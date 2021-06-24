@@ -10,3 +10,5 @@ This is a full stack Todo Project for concept understanding.
     mongoURI: '<your_mongo_uri>'
   }
 ```
+# How to run this project
+Run command : ```cd backend``` and ```npm run dev```
